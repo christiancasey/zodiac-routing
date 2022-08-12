@@ -1,0 +1,150 @@
+.content {
+  position: fixed;
+  width: 100vw;
+  height: calc(100% - 20vw);
+  top: 20vw;
+  overflow: scroll;
+  
+  padding: 0.5vw;
+  
+  background-color: #0000;
+  color: #FFD;
+  
+  font: 1.4vw book-antiqua, 'Book Antiqua', serif;
+  text-shadow: 0 0 3px #FFD2;
+  
+  opacity: 0;
+  -webkit-animation: fadeIn ease-in-out 1;
+  -moz-animation: fadeIn ease-in-out 1;
+  animation: fadeIn ease-in-out 1;
+
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+  
+  /* text-transform: uppercase; */
+  /* font-weight: bold; */
+}
+
+
+.sidebar, .lemma {
+  height: calc(100% - 20px);
+  
+  overflow: scroll;
+  float: left;
+  margin: 1vw;
+  
+  padding: 0 0.5vw;
+  background-color: #2D3B62CC;
+  border: 2px solid #FFDF;
+  box-shadow: 0 0 5px #2D3B62FF, 0 0 3px #2D3B62FF inset;
+  border-radius: 15px;
+}
+
+.sidebar {
+  width: 28vw;
+}
+
+
+.lemma {
+  width: 64vw;
+}
+
+@font-face {
+  font-family: dual;
+  src: url(../Fonts/dual.woff);
+}
+
+h1, h2, h3, h4 {
+  font-family: dual, 'Dual', 'Futura', sans-serif;
+  
+  /* text-shadow: 0 0 3px #2D3B62FF; */
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  
+  margin: 10px 0 10px 0;
+}
+h1, .lemmaTitle {
+  font-size: 2vw;
+}
+h2 {
+  font-size: 1.8vw;
+}
+h3 {
+  font-size: 1.6vw;
+}
+h3 {
+  font-size: 1.4vw;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  /* pointer-events: none; */
+  /* cursor: text; */
+  text-decoration: none;
+  color: inherit;
+}
+ol, li {
+  list-style: none;
+  padding: 2px;
+}
+ol {
+  margin: 5px 0 20px 0;
+}
+
+.sortButtons {
+  color: #ffef;
+  background: #fff0;
+  border: none;
+  outline: none;
+  margin-top: 0.5vw;
+  font: 1vw book-antiqua, 'Book Antiqua', serif;
+  text-shadow: 0 0 3px #FFD2;
+}
+.sortButtons:hover {
+  filter: drop-shadow(0 0 3px #ffe6);
+}
+
+.addNewLemma {
+  color: #ffef;
+  background: #fff0;
+  border: none;
+  outline: none;
+  margin-top: 0.5vw;
+  font: 1.2vw book-antiqua, 'Book Antiqua', serif;
+  text-shadow: 0 0 3px #FFD2;
+}
+.addNewLemma:hover {
+  filter: drop-shadow(0 0 3px #ffe6);
+}
+
+.lemmaList {
+  color: #ffef;
+  background: #fff0;
+  border: none;
+  padding: 0.2vw;
+  outline: none;
+  text-shadow: 0 0 8px #2D3B62FF;
+}
+.lemmaList:hover {
+  text-shadow: 0 0 4px #FFE6;
+}
+
+
+/* Fade in animation */
+@-webkit-keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@-moz-keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+

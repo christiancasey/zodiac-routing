@@ -1,15 +1,15 @@
 {
-  "main.css": "/zodiac-router/static/css/main.8ac39d64.chunk.css",
-  "main.js": "/zodiac-router/static/js/main.ceb5caad.chunk.js",
-  "main.js.map": "/zodiac-router/static/js/main.ceb5caad.chunk.js.map",
-  "static/js/1.94f98db4.chunk.js": "/zodiac-router/static/js/1.94f98db4.chunk.js",
-  "static/js/1.94f98db4.chunk.js.map": "/zodiac-router/static/js/1.94f98db4.chunk.js.map",
-  "runtime~main.js": "/zodiac-router/static/js/runtime~main.1768693e.js",
-  "runtime~main.js.map": "/zodiac-router/static/js/runtime~main.1768693e.js.map",
-  "static/media/index.css": "/zodiac-router/static/media/book-antiqua.c7f8b09b.woff",
-  "static/media/zodiac_constellations.svg": "/zodiac-router/static/media/zodiac_constellations.56c6ee3d.svg",
-  "static/css/main.8ac39d64.chunk.css.map": "/zodiac-router/static/css/main.8ac39d64.chunk.css.map",
-  "index.html": "/zodiac-router/index.html",
-  "precache-manifest.9efe64fedf3f7f67363c8ca4906f08a3.js": "/zodiac-router/precache-manifest.9efe64fedf3f7f67363c8ca4906f08a3.js",
-  "service-worker.js": "/zodiac-router/service-worker.js"
+  "main.css": "/zodiac-routing/static/css/main.93b50549.chunk.css",
+  "main.js": "/zodiac-routing/static/js/main.23debd9c.chunk.js",
+  "main.js.map": "/zodiac-routing/static/js/main.23debd9c.chunk.js.map",
+  "static/js/1.94f98db4.chunk.js": "/zodiac-routing/static/js/1.94f98db4.chunk.js",
+  "static/js/1.94f98db4.chunk.js.map": "/zodiac-routing/static/js/1.94f98db4.chunk.js.map",
+  "runtime~main.js": "/zodiac-routing/static/js/runtime~main.9682275e.js",
+  "runtime~main.js.map": "/zodiac-routing/static/js/runtime~main.9682275e.js.map",
+  "static/media/index.css": "/zodiac-routing/static/media/book-antiqua.c7f8b09b.woff",
+  "static/media/zodiac_constellations.svg": "/zodiac-routing/static/media/zodiac_constellations.56c6ee3d.svg",
+  "static/css/main.93b50549.chunk.css.map": "/zodiac-routing/static/css/main.93b50549.chunk.css.map",
+  "index.html": "/zodiac-routing/index.html",
+  "precache-manifest.91f956c2fbb8c9e87b9779bff6c0f381.js": "/zodiac-routing/precache-manifest.91f956c2fbb8c9e87b9779bff6c0f381.js",
+  "service-worker.js": "/zodiac-routing/service-worker.js"
 }

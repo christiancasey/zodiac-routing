@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/zodiac-router/precache-manifest.9efe64fedf3f7f67363c8ca4906f08a3.js"
+  "/zodiac-routing/precache-manifest.91f956c2fbb8c9e87b9779bff6c0f381.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/zodiac-router/index.html", {
+workbox.routing.registerNavigationRoute("/zodiac-routing/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });

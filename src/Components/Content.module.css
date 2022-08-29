@@ -34,30 +34,6 @@
   /* font-weight: bold; */
 }
 
-
-.sidebar, .lemma {
-  height: calc(100% - 20px);
-  
-  overflow: scroll;
-  float: left;
-  margin: 1vw;
-  
-  padding: 0 0.5vw;
-  background-color: #2D3B62CC;
-  border: 2px solid #FFDF;
-  box-shadow: 0 0 5px #2D3B62FF, 0 0 3px #2D3B62FF inset;
-  border-radius: 15px;
-}
-
-.sidebar {
-  width: 28vw;
-}
-
-
-.lemma {
-  width: 64vw;
-}
-
 @font-face {
   font-family: dual;
   src: url(../Fonts/dual.woff);
@@ -104,43 +80,6 @@ ol {
   margin: 5px 0 20px 0;
 }
 
-.sortButtons {
-  color: #ffef;
-  background: #fff0;
-  border: none;
-  outline: none;
-  margin-top: 0.5vw;
-  font: 1vw book-antiqua, 'Book Antiqua', serif;
-  text-shadow: 0 0 3px #FFD2;
-}
-.sortButtons:hover {
-  filter: drop-shadow(0 0 3px #ffe6);
-}
-
-.addNewLemma {
-  color: #ffef;
-  background: #fff0;
-  border: none;
-  outline: none;
-  margin-top: 0.5vw;
-  font: 1.2vw book-antiqua, 'Book Antiqua', serif;
-  text-shadow: 0 0 3px #FFD2;
-}
-.addNewLemma:hover {
-  filter: drop-shadow(0 0 3px #ffe6);
-}
-
-.lemmaList {
-  color: #ffef;
-  background: #fff0;
-  border: none;
-  padding: 0.2vw;
-  outline: none;
-  text-shadow: 0 0 8px #2D3B62FF;
-}
-.lemmaList:hover {
-  text-shadow: 0 0 4px #FFE6;
-}
 
 
 /* Fade in animation */

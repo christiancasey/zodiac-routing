@@ -71,9 +71,6 @@
 .inputTransliteration, .inputTransliterationWide {
   font-style: italic;
 }
-.input:disabled {
-  color: #FFD6;
-}
 .inputWide, .inputTransliterationWide, .inputDelete {
   width: 48vw;
 }
@@ -93,6 +90,16 @@
   outline: none;
   margin-bottom: 1vw;
 }
+
+.input:disabled, .inputSearch:disabled, .inputMeaning:disabled, .inputTransliteration:disabled, .inputWide:disabled, .inputTransliterationWide:disabled, .inputKeyboard:disabled {
+  color: #FFEF;
+  border: 0;
+  /* needed for Safari */
+  -webkit-text-fill-color: #FFEF;
+  opacity: 1;
+}
+
+
 .label:focus, .input:focus, .inputWide:focus, .inputTransliteration:focus, .inputTransliteration:focus, .inputTransliterationWide:focus  {
   color: #FFE;
   outline: none;
@@ -114,10 +121,10 @@
   border-radius: 10px;
 }
 .basic {
-  height: 22vw;
+  height: 24vw;
 }
 .meanings, .variants {
-  height: 10vw;
+  height: 11vw;
 }
 .quotations, .deleteLemma {
   width: 60vw;
@@ -176,7 +183,7 @@
 }
 
 .sidebar, .lemma {
-  height: calc(100% - 20px);
+  height: calc(100% - 2vw);
   width: 64vw;
   
   overflow: scroll;
@@ -188,4 +195,53 @@
   border: 2px solid #FFDF;
   box-shadow: 0 0 5px #2D3B62FF, 0 0 3px #2D3B62FF inset;
   border-radius: 15px;
+}
+
+
+.sidebar {
+  width: 28vw;
+}
+
+
+.lemma {
+  width: 64vw;
+}
+
+
+.sortButtons {
+  color: #ffef;
+  background: #fff0;
+  border: none;
+  outline: none;
+  margin-top: 0.5vw;
+  font: 1vw book-antiqua, 'Book Antiqua', serif;
+  text-shadow: 0 0 3px #FFD2;
+}
+.sortButtons:hover {
+  filter: drop-shadow(0 0 3px #ffe6);
+}
+
+.addNewLemma {
+  color: #ffef;
+  background: #fff0;
+  border: none;
+  outline: none;
+  margin-top: 0.5vw;
+  font: 1.2vw book-antiqua, 'Book Antiqua', serif;
+  text-shadow: 0 0 3px #FFD2;
+}
+.addNewLemma:hover {
+  filter: drop-shadow(0 0 3px #ffe6);
+}
+
+.lemmaList {
+  color: #ffef;
+  background: #fff0;
+  border: none;
+  padding: 0.2vw;
+  outline: none;
+  text-shadow: 0 0 8px #2D3B62FF;
+}
+.lemmaList:hover {
+  text-shadow: 0 0 4px #FFE6;
 }

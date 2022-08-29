@@ -2,20 +2,21 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 
 import QueryNavLink from './QueryNavLink';
+import UserContext from '../Contexts/UserContext';
 
 import { getLemmataList } from '../Data/sample-data';
 import { searchLemma } from '../Functions/searchLemmata';
 
-import styles from './Content.module.css';
+import styles from './Lemma.module.css';
 
 const LemmataList = props => {
-  let lemmataList = getLemmataList();
+  const {user} = React.useContext(UserContext);
+  let lemmataList = getLemmataList(user.token);
   let [searchParams] = useSearchParams();
   
   const [lemmataSortField, setLemmataSortField] = React.useState('original');
   
   function sortLemmata(sortField) {
-    console.log('sort by: ' + sortField);
     setLemmataSortField(sortField);
   }
   
@@ -30,7 +31,7 @@ const LemmataList = props => {
       props.languages.some(language => (
           language.active 
           && language.value === lemma.language
-          && lemma.original !== '?'
+          // && lemma.original !== '?'
         )
       ));
   
@@ -44,8 +45,8 @@ const LemmataList = props => {
       <h2>Lemmata</h2>
       <div className={styles.sortButtons}>
         Sort by: 
-          <button className={styles.sortButtons} onClick={e => sortLemmata('original')}>Dictionary</button>
-          <button className={styles.sortButtons} onClick={e => sortLemmata('transliteration')}>Transliteration</button>
+          <button className={styles.sortButtons} onClick={e => sortLemmata('original')}>Dictionary</button> |
+          <button className={styles.sortButtons} onClick={e => sortLemmata('transliteration')}>Transliteration</button> |
           <button className={styles.sortButtons} onClick={e => sortLemmata('translation')}>Translation</button>
           {/* <button className={styles.sortButtons} onClick={e => props.sortLemmata('language')}>Language</button> */}
       </div>

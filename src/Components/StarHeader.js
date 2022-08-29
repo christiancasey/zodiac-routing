@@ -1,5 +1,9 @@
 import React from 'react';
-import { IoIosPlay, IoIosPause } from 'react-icons/io';
+import { useNavigate } from "react-router-dom";
+import { IoIosPlay, IoIosPause, IoIosHome, IoIosLogIn, IoIosLogOut } from 'react-icons/io';
+
+import UserContext from '../Contexts/UserContext';
+import LogIn from './LogIn.js';
 
 import styles from './StarHeader.module.css';
 
@@ -7,14 +11,27 @@ import zodiacConstellations from '../Graphics/zodiac_constellations.svg';
 // import zodiacLogo from '../Graphics/zodiac_logo.svg';
 
 const StarHeader = () => {
+  const {user, setUser} = React.useContext(UserContext);
+  let navigate = useNavigate();
+  const [loginVisible, setLoginVisible] = React.useState(false);
+  
   let startStyle;
   if (localStorage.getItem('pauseStarChart') === 'true') {
     startStyle = {animationPlayState: 'paused'};
   } else {
     startStyle = {animationPlayState: 'running'};
   }
-  
   const [style, setStyle] = React.useState(startStyle);
+  
+  function logout() {
+    setUser({token: null});
+    localStorage.removeItem('token');
+    setLoginVisible(false);
+  }
+  
+  function login() {
+    setLoginVisible(true);
+  }
   
   const playPause = () => {
     setStyle(prevStyle => {
@@ -27,11 +44,35 @@ const StarHeader = () => {
     });
   };
   
+  const goHome = () => {
+    navigate('/zodiac-routing/');
+  }
+  
   return (
     <>
+      <button className={styles.home} onClick={goHome}>
+        <IoIosHome />
+      </button>
+      {!user.token && (
+        <button className={styles.home} onClick={login}>
+          <IoIosLogIn />
+        </button>
+      )}
+      {user.token && (
+        <button className={styles.home} onClick={logout}>
+          <IoIosLogOut />
+        </button>
+      )}
+      {user.token && (
+        <div className={styles.username}>{user.username}</div>
+      )}
       <button className={styles.playPause} onClick={playPause}>
         {(style.animationPlayState === 'running') ? (<IoIosPause />) : <IoIosPlay />}
       </button>
+      <LogIn
+        visible={loginVisible}
+        setLoginVisible={setLoginVisible}
+      />
       <header className={styles.header} onClick={() => playPause()}>
         <img
           style={style}

@@ -1,9 +1,10 @@
 
+import { v4 as uuidv4 } from "uuid";
 
 let sampleLemmata = [
   {
     "lemmaId": "676905a6-25ea-409d-9a83-eebfa8d27de4",
-    "published": false,
+    "published": true,
     "translation": "furrow",
     "language": "akkadian",
     "original": "ABSIN",
@@ -73,7 +74,7 @@ let sampleLemmata = [
   },
   {
     "lemmaId": "fa9850a3-288c-4af2-8933-607a88ee4962",
-    "published": false,
+    "published": true,
     "translation": "Sheep",
     "language": "egyptian",
     "original": "𓃝",
@@ -184,7 +185,7 @@ if (!lemmata) {
   lemmata = sampleLemmata;
 }
 
-export function getLemmataList() {
+export function getLemmataList(token) {
   let lemmataList = lemmata.map(lemma => {
     return {
     lemmaId: lemma.lemmaId,
@@ -194,6 +195,8 @@ export function getLemmataList() {
     transliteration: lemma.transliteration,
     language: lemma.language,
   }})
+  if (!token)
+    lemmataList = lemmataList.filter(lemma => lemma.published)
   return lemmataList;
 }
 
@@ -203,6 +206,57 @@ export function getLemma(lemmaId) {
   );
 }
 
+export function addNewLemma() {
+  // Move some of this back into <Sidebar />
+  // esp. the creation of the new object and the id
+  lemmata = JSON.parse(localStorage.getItem('lemmata') || null);
+  if (!lemmata)
+    throw new Error('Problem with sample data in localStorage');
+  
+  let newLemmaId = uuidv4();
+  const newLemma = {
+    lemmaId: newLemmaId,
+    published: false,
+    translation: '',
+    language: '',
+    original: '',
+    transliteration: '',
+    partOfSpeech: '',
+    meanings: [],
+    variants: [],
+    quotations: [],
+    
+    changed: true,
+  };
+  
+  lemmata.push(newLemma);
+  localStorage.setItem("lemmata", JSON.stringify(lemmata));
+  
+  return newLemmaId;
+}
 
+export function saveLemmaToDB(newLemma) {
+  const newLemmata = lemmata.map(lemma => {
+      if (lemma.lemmaId === newLemma.lemmaId) {
+        return newLemma;
+      }
+      return lemma;
+    });
+  lemmata = newLemmata;
+  localStorage.setItem("lemmata", JSON.stringify(newLemmata));
+}
 
-
+export function deleteLemmaFromDB(lemmaId) {
+  
+  // Don't delete the very last lemma or everything fubars
+  if (lemmata.length <= 1)
+    return;
+  
+  const newLemmata = lemmata.filter(lemma => {
+    return (lemma.lemmaId !== lemmaId);
+  });
+  lemmata = newLemmata;
+  
+  // REPLACE WITH A PROPER LAMBDA FUNCTION CALL
+  localStorage.setItem("lemmata", JSON.stringify(newLemmata));
+};

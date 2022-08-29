@@ -75,6 +75,83 @@
   animation-delay: 0.6s;
 }
 
+.logIn {
+  position: fixed;
+  width: 24vw;
+  height: 16vw;
+  left: 2vw;
+  top: 2vw;
+  overflow: scroll;
+  
+  padding: 0.5vw;
+  
+  background-color: #2D3B62F0;
+  color: #FFD;
+  
+  font: 1.4vw book-antiqua, 'Book Antiqua', serif;
+  text-shadow: 0 0 3px #FFD2;
+  
+  padding: 0.5vw 0.5vw;
+  border: 2px solid #FFDF;
+  box-shadow: 0 0 5px #2D3B62FF, 0 0 3px #2D3B62FF inset;
+  border-radius: 15px;
+  z-index: 10;
+  
+  
+  opacity: 0;
+	-webkit-animation: fadeIn ease-in-out 1;
+	-moz-animation: fadeIn ease-in-out 1;
+	animation: fadeIn ease-in-out 1;
+
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+
+	-webkit-animation-duration: 0.6s;
+	-moz-animation-duration: 0.6s;
+	animation-duration: 0.6s;
+}
+
+.label {
+  display: table-cell;
+  padding: 0.5vw 1vw 0 0;
+  vertical-align: top;
+}
+
+.input {
+  font: 1.2vw book-antiqua, 'Book Antiqua', serif;
+  display: table-cell;
+  width: 14vw;
+  background-color: #2D3B6288;
+  color: #FFDC;
+  border: 0.1vw solid #FFD8;
+  border-radius: 0.5vw;
+  margin: 0.2vw;
+  padding: 0.2vw;
+  outline: none;
+  float: left;
+  height: 2vw;
+}
+.close {
+  color: #ffef;
+  background: #fff0;
+  border: none;
+  outline: none;
+  margin-top: 0.5vw;
+  float: right;
+}
+.close:hover {
+  filter: drop-shadow(0 0 3px #ffe8);
+}
+
+.username {
+  color: #ffdd;
+  font: 1.3vw book-antiqua, 'Book Antiqua', serif;
+  text-shadow: 0 0 3px #ffd2;
+  float: left;
+  margin-top: 0.2vw;
+}
+
 .headerBodyGradient {
   position: fixed;
   height: 2vw;
@@ -86,7 +163,7 @@
   
 }
 
-.playPause {
+.playPause, .home {
   /* position: absolute; */
   float: right;
   width: 5vw;
@@ -97,8 +174,11 @@
   outline: none;
   margin-top: 0.5vw;
 }
-.playPause:hover {  
+.playPause:hover, .home:hover {  
   filter:drop-shadow(0 0 3px #ffe8);
+}
+.home {
+  float: left;
 }
 
 .bodyBackground {

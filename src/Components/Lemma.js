@@ -1,28 +1,298 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation, useOutletContext } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
-import { getLemma } from "../Data/sample-data";
+import { getLemma, saveLemmaToDB, deleteLemmaFromDB } from "../Data/sample-data";
+
+import BasicInfo from './BasicInfo';
+import Meanings from './Meanings';
+import Variants from './Variants';
+import Quotations from './Quotations';
+import DeleteLemma from './DeleteLemma';
+import UserContext from '../Contexts/UserContext';
 
 import styles from './Lemma.module.css';
 
 const Lemma = props => {
-  let lemmaId = useParams().lemmaId;
-  let lemma = getLemma(lemmaId);
+  let navigate = useNavigate();
+  let location = useLocation();
+  const {user} = React.useContext(UserContext);
   
-  if (!lemma)
+  // Really stupid cludge that forces the sidebar to update when the user saves a new lemma
+  // It's either this or raise all of the lemma state and redo the routing just for that one edge case
+  let [updateLemmataList, changed, setChanged] = useOutletContext(); 
+  
+  let params = useParams();
+  
+  // A little convoluted, but this is the only way I've found to get the lemma state variable
+  // to update when the URL params change.
+  let [lemma, setLemma] = React.useState(getLemma(params.lemmaId));
+  // let [changed, setChanged] = React.useState(lemma ? lemma.changed : false);
+  React.useEffect(() => {
+    setLemma(getLemma(params.lemmaId));
+  }, [params.lemmaId]);
+  
+  // Keyboard shortcuts
+  const handleKeyPress = e => {
+    // Meta keys
+    if (e.ctrlKey || e.metaKey) {
+      // Save shortcuts (ctrl+s and cmd+s)
+      if (e.key === 's') {
+        e.preventDefault();
+        setChanged(false);
+        saveLemma();
+      }
+    }
+  };
+  React.useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  });
+
+  const onChange = e => {
+    if (e.target.type === "checkbox") {
+      setLemma(prevLemma => {
+        return {
+          ...prevLemma,
+          [e.target.name]: e.target.checked
+        }
+      });
+    } else {
+      setLemma(prevLemma => {
+        return {
+          ...prevLemma,
+          [e.target.name]: e.target.value
+        }
+      });
+    }
+    setChanged(true);
+  };
+  
+  const saveLemma = () => {
+    updateLemmataList();
+    setChanged(false);
+    saveLemmaToDB(lemma);
+  };
+  
+  const deleteLemma = () => {
+    deleteLemmaFromDB(lemma.lemmaId);
+    setLemma(null);
+    navigate('/zodiac-routing/' + location.search);
+  }
+  
+  const updateMeaning = (updatedMeaning, id) => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        meanings: prevLemma.meanings.map(meaning => {
+          if (meaning.id === id) {
+            meaning.value = updatedMeaning;
+          }
+          return meaning;
+        })
+      }
+    });
+    setChanged(true);
+  };
+
+  const deleteMeaning = id => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        meanings: prevLemma.meanings.filter(meaning => {
+          return meaning.id !== id;
+        }),
+      };
+    });
+    setChanged(true);
+  };
+
+  const addNewMeaning = e => {
+    e.preventDefault();
+    
+    const newMeaning = {
+      id: uuidv4(),
+      value: '',
+    };
+    
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        meanings: [
+          ...prevLemma.meanings,
+          newMeaning
+        ]
+      };
+    });
+    setChanged(true);
+  };
+
+  const updateVariant = (key, updatedVariant, id) => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        variants: lemma.variants.map(variant => {
+          if (variant.id === id) {
+            variant[key] = updatedVariant;
+          }
+          return variant;
+        })
+      }
+    });
+    setChanged(true);
+  };
+
+  const deleteVariant = id => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        variants: prevLemma.variants.filter(variant => {
+          return variant.id !== id;
+        }),
+      };
+    });
+    setChanged(true);
+  };
+
+  const addNewVariant = e => {
+    e.preventDefault();
+    
+    const newVariant = {
+      id: uuidv4(),
+      original: '',
+      transliteration: '', 
+    };
+    
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        variants: [
+          ...prevLemma.variants,
+          newVariant
+        ]
+      };
+    });
+    setChanged(true);
+  };
+
+  const updateQuotation = (key, updatedQuotation, id) => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        quotations: lemma.quotations.map(quotation => {
+          if (quotation.id === id) {
+            quotation[key] = updatedQuotation;
+          }
+          return quotation;
+        })
+      }
+    });
+    setChanged(true);
+  };
+
+  const deleteQuotation = id => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        quotations: prevLemma.quotations.filter(quotation => {
+          return quotation.id !== id;
+        }),
+      };
+    });
+    setChanged(true);
+  };
+
+  const addNewQuotation = e => {
+    e.preventDefault();
+    
+    const newQuotation = {
+      id: uuidv4(),
+      original: '',
+      transliteration: '',
+      translation: '',
+      source: '',
+      genre: '',
+      provenance: '',
+      date: '',
+      publication: '',
+    }
+    
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        quotations: [
+          ...prevLemma.quotations,
+          newQuotation
+        ]
+      };
+    });
+    setChanged(true);
+  };
+  
+  // Default display when an invalid lemma id is in the URL params
+  if (params.lemmaId && !lemma) {
     return (
       <main className={styles.lemma}>
         <h2>Lemma</h2>
-        <p>Select a lemma...</p>
+        <div style={{opacity: 0.5}}>
+          <p>The lemma ID in the URL does not correspond to a valid lemma.</p>
+          <p>Perhaps the lemma you are looking for has been deleted.</p>
+          <p>Please select a new lemma from the options on the left.</p>
+        </div>
       </main>
     );
+  }
+  // Default display when no lemma is selected
+  if (!params.lemmaId) {
+    return (
+      <main className={styles.lemma}>
+        <h2>Lemma</h2>
+        <div style={{opacity: 0.5}}>
+          <p>No lemma selected.</p>
+          <p>Please select a lemma from the options on the left.</p>
+        </div>
+      </main>
+    );
+  }
   
+  // Full lemma display
   return (
     <main className={styles.lemma}>
-      <h2>Lemma</h2>
-      <p>{lemma.original}</p>
-      <p>{lemma.transliteration}</p>
-      <p>{lemma.translation}</p>
+      <h1>
+        {changed ? <i>Lemma (unsaved)</i> : 'Lemma'}
+        {user.token && (
+          <button className={styles.delete} onClick={() => saveLemma()}>SAVE</button>
+        )}
+      </h1>
+      
+      <fieldset disabled={user.token===null} style={{border: 'none', margin: 0, padding: 0}}>
+        <BasicInfo lemma={lemma} onChange={onChange} />
+        <Meanings
+          meanings={lemma.meanings}
+          updateMeaning={updateMeaning}
+          addNewMeaning={addNewMeaning}
+          deleteMeaning={deleteMeaning}
+        />
+        
+        <Variants
+          variants={lemma.variants}
+          updateVariant={updateVariant}
+          addNewVariant={addNewVariant}
+          deleteVariant={deleteVariant}
+        />
+        
+        <Quotations
+          quotations={lemma.quotations}
+          updateQuotation={updateQuotation}
+          addNewQuotation={addNewQuotation}
+          deleteQuotation={deleteQuotation}
+        />
+        
+        <DeleteLemma lemma={lemma} deleteLemma={deleteLemma} />
+      </fieldset>
+      
     </main>
   );
 };

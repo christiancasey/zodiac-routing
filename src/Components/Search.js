@@ -2,24 +2,38 @@ import React from "react";
 import { BsKeyboardFill } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
 
+import Keyboards from './Keyboards';
+
 import styles from './Lemma.module.css';
 
 const Search = props => {
   let [searchParams, setSearchParams] = useSearchParams();
+  let [keyboardVisible, setKeyboardVisible] = React.useState(false);
+  let [search, setSearch] = React.useState(searchParams.get('search') || '');
   
-  let search = searchParams.get('search') || '';
-  
-  function addSearchParam(event) {
-    let search = event.target.value;
+  function addSearchParam(newSearch) {
+    setSearch(newSearch);
     let newSearchParams = Object.fromEntries([...searchParams]);
-    newSearchParams.search = (search ? search : '');
+    newSearchParams.search = (newSearch ? newSearch : '');
     setSearchParams(newSearchParams);
   }
   
   const keyboardClick = e => {
-    // props.setKeyboard(prevKeyboard => !prevKeyboard);
-    console.log('keyboard button click');
+    setKeyboardVisible(prevKeyboardVisible => !prevKeyboardVisible)
   };
+  
+  const keyClick = key => {
+    let newSearch = search;
+    if (key === 'delete') {
+      // Array conversion needed to deal with two-byte Unicode characters
+      // setSearch(prevSearch => Array.from(prevSearch).slice(0, -1).join(''));
+      newSearch = Array.from(newSearch).slice(0, -1).join('');
+    } else {
+      // setSearch(prevSearch => prevSearch + key);
+      newSearch = newSearch + key;
+    }
+    addSearchParam(newSearch);
+  }
   
   return (
     <>
@@ -29,7 +43,7 @@ const Search = props => {
         type="text"
         placeholder="lemma..."
         value={search}
-        onChange={event => addSearchParam(event)}
+        onChange={event => addSearchParam(event.target.value)}
       />
       <button
         className={styles.searchKeyboard}
@@ -37,6 +51,9 @@ const Search = props => {
       >
         <BsKeyboardFill />
       </button>
+      <div className={keyboardVisible ? styles.fadeIn : styles.fadeOut }>
+        <Keyboards visible={keyboardVisible} keyboardClick={keyboardClick} keyClick={keyClick} />
+      </div>
     </>
   );
 };

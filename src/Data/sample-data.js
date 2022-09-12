@@ -36,6 +36,12 @@ let sampleLemmata = [
         "transliteration": "šer'u"
       }
     ],
+    "crosslinks": [
+      {
+        "id": 1,
+        "link": "ac711882-e49e-48f8-9969-e794206a3626"
+      }
+    ],
     "quotations": [
       {
         "id": 1,
@@ -70,7 +76,8 @@ let sampleLemmata = [
         "date": "ca. 3xx BCE",
         "publication": "Hunger 2004 (see BibMAS)"
       }
-    ]
+    ],
+    "externalLinks": []
   },
   {
     "lemmaId": "fa9850a3-288c-4af2-8933-607a88ee4962",
@@ -97,6 +104,12 @@ let sampleLemmata = [
         "transliteration": "tpy"
       }
     ],
+    "crosslinks": [
+      {
+        "id": 1,
+        "link": "ac711882-e49e-48f8-9969-e794206a3626"
+      }
+    ],
     "quotations": [
       {
         "id": 1,
@@ -120,11 +133,23 @@ let sampleLemmata = [
         "date": "after AD 18",
         "publication": "O. Neugebauer, “Demotic Horoscopes”, JAOS 63 (1943), 117–119 (115–127)."
       }
+    ],
+    "externalLinks": [
+      {
+        "id": 1,
+        "url": "http://aaew2.bbaw.de/tla/servlet/GetWcnDetails?wn=00700&db=1",
+        "display": "TLA: ỉsw"
+      },
+      {
+        "id": 2,
+        "url": "https://www.dwl.aegyptologie.lmu.de/suche.php?nummer=00700",
+        "display": "DWL: ỉsw"
+      }
     ]
   },
   {
     "lemmaId": "ac711882-e49e-48f8-9969-e794206a3626",
-    "published": false,
+    "published": true,
     "translation": "ram",
     "language": "greek",
     "original": "κριός",
@@ -135,6 +160,16 @@ let sampleLemmata = [
       {"id": 2, "value": "Aries (constellation)"}
     ],
     "variants": [],
+    "crosslinks": [
+      {
+        "id": 1,
+        "link": "fa9850a3-288c-4af2-8933-607a88ee4962"
+      },
+      {
+        "id": 2,
+        "link": "676905a6-25ea-409d-9a83-eebfa8d27de4"
+      }
+    ],
     "quotations": [
       {
         "id": 1,
@@ -169,6 +204,13 @@ let sampleLemmata = [
         "date": "ca. 152–162 CE",
         "publication": ""
       }
+    ],
+    "externalLinks": [
+      {
+        "id": 1,
+        "url": "http://stephanus.tlg.uci.edu/Iris/inst/lexica.jsp#qid=174929&ql=KRIO%2FS%2C%20-OU%3D%2C%20O(&q=%CE%BA%CF%81%CE%B9%CF%8C%CF%82%2C%20%E2%80%91%CE%BF%E1%BF%A6%2C%20%E1%BD%81&usr_input=greek",
+        "display": "TLG: κριός"
+      }
     ]
   }
 ];
@@ -201,9 +243,7 @@ export function getLemmataList(token) {
 }
 
 export function getLemma(lemmaId) {
-  return lemmata.find(
-    lemma => lemma.lemmaId === lemmaId
-  );
+  return lemmata.find(lemma => lemma.lemmaId === lemmaId);
 }
 
 export function addNewLemma() {
@@ -224,6 +264,7 @@ export function addNewLemma() {
     partOfSpeech: '',
     meanings: [],
     variants: [],
+    crosslinks: [],
     quotations: [],
     
     changed: true,

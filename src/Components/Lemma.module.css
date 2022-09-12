@@ -105,9 +105,9 @@
   outline: none;
   border-color: #FFE;
 }
-.basic, .meanings, .variants, .quotations, .deleteLemma {
+.basic, .meanings, .variants, .quotations, .crosslinks, .deleteLemma {
   /* height: calc(100% - 20px); */
-  height: 22vw;
+  /* height: 22vw; */
   width: 29vw;
   overflow: scroll;
   float: left;
@@ -126,8 +126,14 @@
 .meanings, .variants {
   height: 11vw;
 }
-.quotations, .deleteLemma {
+.quotations, .crosslinks, .deleteLemma {
   width: 60vw;
+}
+
+.crosslinks {
+  display: flex;
+  flex-direction: column;
+  min-height: 1vw;
 }
 .deleteLemma {
   color: red;
@@ -137,6 +143,9 @@
 }
 .quotationsList {
   margin-bottom: 3vw;
+}
+.crosslinksList {
+  margin-bottom: 1vw;
 }
 .delete, .add {
   color: #ffef;

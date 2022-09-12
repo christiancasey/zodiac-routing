@@ -63,7 +63,7 @@ const Quotation = props => {
           value={quotation.transliteration}
           onChange={e => props.updateQuotation("transliteration", e.target.value, quotation.id)} 
         />)}
-        {!user.token && (<div>{quotation.transliteration}</div>)}
+        {!user.token && (<div style={{fontStyle: 'italic'}}>{quotation.transliteration}</div>)}
       </div>
       <div className={styles.row}>
         <label className={styles.label} htmlFor={"translation_"+quotation.id}>Translation</label>

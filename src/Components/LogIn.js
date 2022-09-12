@@ -44,7 +44,7 @@ const LogIn = props => {
   }
   
   return (
-    <div className={styles.logIn} style={style}>
+    <div className={styles.login} style={style}>
       <button
         className={styles.close}
         onClick={event => props.setLoginVisible(false)}
@@ -82,12 +82,13 @@ const LogIn = props => {
         </tr>
         <tr>
           <td>
-            <div style={{display: invalidLogin ? 'block' : 'none'}}>Invalid login</div>
+            <button className={styles.loginButton} type="submit">Log in</button>
           </td>
-        </tr>
-        <tr>
           <td>
-            <button type="submit">Log in</button>
+            <div className={styles.invalidLogin} style={{display: invalidLogin ? 'block' : 'none'}}>
+              Incorrect login.<br />
+              {/*<a href="#">Forgot password?</a>*/}
+            </div>
           </td>
         </tr>
         </tbody></table>

@@ -102,7 +102,7 @@ const BasicInfo = props => {
               value={lemma.transliteration}
               onChange={onChange}
             />)}
-            {!user.token && (<div>{lemma.transliteration}</div>)}
+            {!user.token && (<div style={{fontStyle: 'italic'}}>{lemma.transliteration}</div>)}
             </td>
         </tr>
         <tr>

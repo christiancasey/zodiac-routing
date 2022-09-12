@@ -8,6 +8,8 @@ import BasicInfo from './BasicInfo';
 import Meanings from './Meanings';
 import Variants from './Variants';
 import Quotations from './Quotations';
+import CrossLinks from './CrossLinks';
+import ExternalLinks from './ExternalLinks';
 import DeleteLemma from './DeleteLemma';
 import UserContext from '../Contexts/UserContext';
 
@@ -231,6 +233,105 @@ const Lemma = props => {
     setChanged(true);
   };
   
+  //////////////////////////////////////////////////////////////////////////////
+  // EXTERNAL LINKS
+  const updateExternalLink = (key, updatedexternalLink, id) => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        externalLinks: lemma.externalLinks.map(externalLink => {
+          if (externalLink.id === id) {
+            externalLink[key] = updatedexternalLink;
+          }
+          return externalLink;
+        }),
+      }
+    });
+    setChanged(true);
+  };
+
+  const deleteExternalLink = id => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        externalLinks: prevLemma.externalLinks.filter(externalLink => {
+          return externalLink.id !== id;
+        }),
+      };
+    });
+    setChanged(true);
+  };
+
+  const addNewExternalLink = e => {
+    e.preventDefault();
+    const newExternalLink = {
+      id: uuidv4(),
+      url: '',
+      display: '',
+    }
+    
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        externalLinks: [
+          ...prevLemma.externalLinks,
+          newExternalLink
+        ]
+      };
+    });
+    setChanged(true);
+  };
+  
+  //////////////////////////////////////////////////////////////////////////////
+  // CROSS LINKS
+  const updateCrossLink = (updatedCrosslink, id) => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        crosslinks: lemma.crosslinks.map(crosslink => {
+          if (crosslink.id === id) {
+            crosslink.link = updatedCrosslink;
+          }
+          return crosslink;
+        }),
+      }
+    });
+    setChanged(true);
+  };
+
+  const deleteCrossLink = id => {
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        crosslinks: prevLemma.crosslinks.filter(crosslink => {
+          return crosslink.id !== id;
+        }),
+      };
+    });
+    setChanged(true);
+  };
+
+  const addNewCrossLink = e => {
+    e.preventDefault();
+    console.log('addNewCrossLink()');
+    const newCrosslink = {
+      id: uuidv4(),
+      link: '',
+    }
+    
+    setLemma(prevLemma => {
+      return {
+        ...prevLemma,
+        crosslinks: [
+          ...prevLemma.crosslinks,
+          newCrosslink
+        ]
+      };
+    });
+    setChanged(true);
+  };
+  
+  
   // Default display when an invalid lemma id is in the URL params
   if (params.lemmaId && !lemma) {
     return (
@@ -268,6 +369,7 @@ const Lemma = props => {
       </h1>
       
       <fieldset disabled={user.token===null} style={{border: 'none', margin: 0, padding: 0}}>
+        
         <BasicInfo lemma={lemma} onChange={onChange} />
         <Meanings
           meanings={lemma.meanings}
@@ -283,11 +385,25 @@ const Lemma = props => {
           deleteVariant={deleteVariant}
         />
         
+        <CrossLinks
+          crosslinks={lemma.crosslinks}
+          updateCrossLink={updateCrossLink}
+          addNewCrossLink={addNewCrossLink}
+          deleteCrossLink={deleteCrossLink}
+        />
+        
         <Quotations
           quotations={lemma.quotations}
           updateQuotation={updateQuotation}
           addNewQuotation={addNewQuotation}
           deleteQuotation={deleteQuotation}
+        />
+        
+        <ExternalLinks
+          externalLinks={lemma.externalLinks}
+          updateExternalLink={updateExternalLink}
+          addNewExternalLink={addNewExternalLink}
+          deleteExternalLink={deleteExternalLink}
         />
         
         <DeleteLemma lemma={lemma} deleteLemma={deleteLemma} />

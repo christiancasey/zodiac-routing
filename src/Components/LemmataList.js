@@ -53,12 +53,13 @@ const LemmataList = props => {
       {lemmataFiltered
         .map(lemma => (
         <QueryNavLink style={({ isActive }) => {
-              return { display: "block", margin: "1rem 0", filter: isActive ? "drop-shadow(0 0 3px #ffe8)" : ""};
+              return { display: "block", margin: "1rem 0", filter: isActive ? "drop-shadow(0 0 2px #ffe6)" : ""};
             }}
           to={lemma.lemmaId} 
           key={lemma.lemmaId}
         >
-          {lemma.original} | {lemma.transliteration} | {lemma.translation}
+          {!lemma.published && (<div style={{fontStyle: 'italic', color: '#ffea'}}> – {lemma.original} | {lemma.transliteration} | {lemma.translation}</div>)}
+          {lemma.published && (<>{lemma.original} | {lemma.transliteration} | {lemma.translation}</>)}
         </QueryNavLink>
       ))}
     </>

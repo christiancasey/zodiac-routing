@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/zodiac-routing/static/media/book-antiqua.c7f8b09b.woff"
   },
   {
-    "revision": "1e3f95d2b80a0938eb589204ba47419f",
+    "revision": "d29a624acb573e15c3bd02eb04d60f4e",
     "url": "/zodiac-routing/index.html"
   }
 ];

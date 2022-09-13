@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/zodiac-routing/precache-manifest.4efa8a5cdc9951bcae3271103a679305.js"
+  "/zodiac-routing/precache-manifest.5dcc5c56dd013a55af7a328f06d73d4a.js"
 );
 
 workbox.clientsClaim();

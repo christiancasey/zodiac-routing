@@ -16,9 +16,6 @@
   display: table-cell;
   padding: 0.5vw 1vw 0 0;
   vertical-align: top;
-  /* width: 11vw; */
-  /* text-transform: capitalize; */
-  /* color: #FFD8; */
 }
 .input, .inputSearch, .inputMeaning, .inputTransliteration, .inputWide, .inputTransliterationWide, .inputKeyboard {
   font: 1.2vw book-antiqua, 'Book Antiqua', serif;
@@ -113,6 +110,7 @@
   float: left;
   margin: 1vw;
   padding-left: 0.5vw;
+  padding-bottom: 1vw;
   
   /* padding: 10px; */
   background-color: #2D3B6266;
@@ -162,12 +160,6 @@
 }
 .delete:hover, .add:hover {
   filter: drop-shadow(0 0 3px #ffe8);
-}
-
-
-.developmentData {
-  /* visibility: hidden;
-  display: none; */
 }
 
 .keyboard {

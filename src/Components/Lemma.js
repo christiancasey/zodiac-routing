@@ -219,6 +219,7 @@ const Lemma = props => {
       provenance: '',
       date: '',
       publication: '',
+      link: '',
     }
     
     setLemma(prevLemma => {
@@ -385,18 +386,18 @@ const Lemma = props => {
           deleteVariant={deleteVariant}
         />
         
-        <CrossLinks
-          crosslinks={lemma.crosslinks}
-          updateCrossLink={updateCrossLink}
-          addNewCrossLink={addNewCrossLink}
-          deleteCrossLink={deleteCrossLink}
-        />
-        
         <Quotations
           quotations={lemma.quotations}
           updateQuotation={updateQuotation}
           addNewQuotation={addNewQuotation}
           deleteQuotation={deleteQuotation}
+        />
+        
+        <CrossLinks
+          crosslinks={lemma.crosslinks}
+          updateCrossLink={updateCrossLink}
+          addNewCrossLink={addNewCrossLink}
+          deleteCrossLink={deleteCrossLink}
         />
         
         <ExternalLinks

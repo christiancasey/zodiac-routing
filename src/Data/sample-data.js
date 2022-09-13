@@ -52,7 +52,8 @@ let sampleLemmata = [
         "genre": "astrological and astronomical procedure text",
         "provenance": "Uruk",
         "date": "ca. 200 BCE",
-        "publication": "Brack-Bernsen & Hunger 2002 (see BibMAS)"
+        "publication": "Brack-Bernsen & Hunger 2002 (see BibMAS)",
+        "link": ""
       },
       {
         "id": 2,
@@ -63,7 +64,8 @@ let sampleLemmata = [
         "genre": "mathematical astronomy procedure text",
         "provenance": "Babylon",
         "date": "",
-        "publication": "Ossendrijver 2012 (see BibMAS)"
+        "publication": "Ossendrijver 2012 (see BibMAS)",
+        "link": ""
       },
       {
         "id": 3,
@@ -74,7 +76,8 @@ let sampleLemmata = [
         "genre": "astrological compendium",
         "provenance": "Babylon?",
         "date": "ca. 3xx BCE",
-        "publication": "Hunger 2004 (see BibMAS)"
+        "publication": "Hunger 2004 (see BibMAS)",
+        "link": ""
       }
     ],
     "externalLinks": []
@@ -120,7 +123,8 @@ let sampleLemmata = [
         "genre": "Astrological/Astronomical list",
         "provenance": "Egypt",
         "date": "Roman",
-        "publication": "O. Neugebauer, “Demotic Horoscopes”, JAOS 63 (1943), 121–121 (115–127)."
+        "publication": "O. Neugebauer, “Demotic Horoscopes”, JAOS 63 (1943), 121–121 (115–127).",
+        "link": ""
       },
       {
         "id": 2,
@@ -131,7 +135,8 @@ let sampleLemmata = [
         "genre": "Horoscope",
         "provenance": "Thebes",
         "date": "after AD 18",
-        "publication": "O. Neugebauer, “Demotic Horoscopes”, JAOS 63 (1943), 117–119 (115–127)."
+        "publication": "O. Neugebauer, “Demotic Horoscopes”, JAOS 63 (1943), 117–119 (115–127).",
+        "link": ""
       }
     ],
     "externalLinks": [
@@ -180,7 +185,8 @@ let sampleLemmata = [
         "genre": "didactic poem on astronomy",
         "provenance": "Pella",
         "date": "ca. 276–274 BCE",
-        "publication": ""
+        "publication": "",
+        "link": ""
       },
       {
         "id": 2,
@@ -191,7 +197,8 @@ let sampleLemmata = [
         "genre": "history",
         "provenance": "Rome",
         "date": "93/94 CE",
-        "publication": ""
+        "publication": "",
+        "link": ""
       },
       {
         "id": 3,
@@ -202,7 +209,8 @@ let sampleLemmata = [
         "genre": "astrological treatise",
         "provenance": "Antioch",
         "date": "ca. 152–162 CE",
-        "publication": ""
+        "publication": "",
+        "link": ""
       }
     ],
     "externalLinks": [

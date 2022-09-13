@@ -15,7 +15,7 @@ const ExternalLink = props => {
   
   if (!user.token) {    
     return (
-      <a target="_blank" rel="noopener noreferrer" href={props.externalLink.url}>
+      <a className={styles.label} target="_blank" rel="noopener noreferrer" href={props.externalLink.url}>
         {props.externalLink.display}
         &nbsp;
         <IoIosOpen />

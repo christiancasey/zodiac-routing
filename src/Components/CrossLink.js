@@ -28,11 +28,13 @@ const CrossLink = props => {
       return <></>;
     
     return (
-      <QueryNavLink to={'/zodiac-routing/'+crosslink}>
-        {lemma.original} | {lemma.transliteration} | {lemma.translation}
-        &nbsp;
-        <IoIosOpen />
-      </QueryNavLink>
+      <div className={styles.label}>
+        <QueryNavLink to={'/zodiac-routing/'+crosslink}>
+          {lemma.original} | {lemma.transliteration} | {lemma.translation}
+          &nbsp;
+          <IoIosOpen />
+        </QueryNavLink>
+      </div>
     )
   }
   
